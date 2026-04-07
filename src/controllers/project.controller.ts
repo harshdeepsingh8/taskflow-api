@@ -9,3 +9,18 @@ export const createProject = (req: Request, res: Response) => {
 export const getProjects = (req: Request, res: Response) => {
   res.json(service.getProjects());
 };
+
+export const getProjectById = (req: Request, res: Response) => {
+  const project = service.getProjectById(req.params.id as string);
+  res.json(project);
+};
+
+export const updateProject = (req: Request, res: Response) => {
+  const updated = service.updateProject(req.params.id as string, req.body);
+  res.json(updated);
+};
+
+export const deleteProject = (req: Request, res: Response) => {
+  service.deleteProject(req.params.id as string);
+  res.json({ message: "Deleted" });
+};

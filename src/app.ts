@@ -10,6 +10,7 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 app.use(helmet());
+
 app.use('/tasks', taskRoutes);
 app.use('/projects', projectRoutes);
 app.use('/comments', commentRoutes);
