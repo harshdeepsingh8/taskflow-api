@@ -12,15 +12,19 @@ export const getProjects = (req: Request, res: Response) => {
 
 export const getProjectById = (req: Request, res: Response) => {
   const project = service.getProjectById(req.params.id as string);
+  if (!project) return res.status(404).json({ message: 'Not found' });
   res.json(project);
 };
 
 export const updateProject = (req: Request, res: Response) => {
   const updated = service.updateProject(req.params.id as string, req.body);
+  if (!updated) return res.status(404).json({ message: 'Not found' });
   res.json(updated);
 };
 
 export const deleteProject = (req: Request, res: Response) => {
+  const project = service.getProjectById(req.params.id as string);
+  if (!project) return res.status(404).json({ message: 'Not found' });
   service.deleteProject(req.params.id as string);
-  res.json({ message: "Deleted" });
+  res.json({ message: 'Deleted' });
 };
