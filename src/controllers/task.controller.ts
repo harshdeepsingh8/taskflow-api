@@ -1,8 +1,10 @@
 import { Request, Response } from 'express';
 import * as service from '../services/task.service';
+import { sendEmail } from '../services/email.service';
 
-export const createTask = (req: Request, res: Response) => {
+export const createTask = async (req: Request, res: Response) => {
   const task = service.createTask(req.body);
+  await sendEmail();
   res.json(task);
 };
 
