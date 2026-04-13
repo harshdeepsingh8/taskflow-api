@@ -5,7 +5,10 @@ const router = express.Router();
 
 router.post('/', controller.createTask);
 router.get('/', controller.getTasks);
+<<<<<<< HEAD
 router.get('/:id', controller.getTaskById);
+=======
+>>>>>>> feature/email-component
 router.put('/:id', controller.updateTask);
 router.delete('/:id', controller.deleteTask);
 
