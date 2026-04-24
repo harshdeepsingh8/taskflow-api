@@ -14,7 +14,7 @@
     "strict": true,
     "skipLibCheck": true,
 
-    "types": ["node", "jest"]
+    "types": ["node", "jest", "supertest"]
   },
   "include": ["src", "tests"],
   "exclude": ["node_modules"]

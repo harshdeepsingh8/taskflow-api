@@ -3,6 +3,7 @@ import * as service from '../services/task.service';
 import { taskSchema } from '../middlewares/validation';
 import { sendEmail } from '../services/email.service';
 
+
 export const createTask = async (req: Request, res: Response) => {
   const { error } = taskSchema.validate(req.body);
   if (error) {
@@ -14,8 +15,20 @@ export const createTask = async (req: Request, res: Response) => {
   res.json(task);
 };
 
+
 export const getTasks = (req: Request, res: Response) => {
-  const tasks = service.getTasks();
+  let tasks = service.getTasks();
+
+  const { title, sort } = req.query;
+
+  if (title) {
+    tasks = tasks.filter(t => t.title.includes(title as string));
+  }
+
+  if (sort === 'title') {
+    tasks.sort((a, b) => a.title.localeCompare(b.title));
+  }
+
   res.json(tasks);
 };
 
